@@ -707,29 +707,22 @@ int main(void)
     bool erase_bonds;
 
     // Initialize.
-   log_init();
+    log_init();
     timers_init();
     buttons_leds_init(&erase_bonds);
-	//低功耗管理模块初始化，通过软件方式让设备自动进低功耗模式
     power_management_init();
-	//协议栈初始化，使能蓝牙协议栈
     ble_stack_init();
-	//gap 参数初始化
     gap_params_init();
-	//gatt 参数化配置
     gatt_init();
-	//广播参数初始化
     advertising_init();
-	//添加蓝牙service和characteristic
     services_init();
-	//连接参数初始化
     conn_params_init();
     peer_manager_init();
 
     // Start execution.
     NRF_LOG_INFO("Template example started.");
     application_timers_start();
-	//启动广播
+
     advertising_start(erase_bonds);
 
     // Enter main loop.
