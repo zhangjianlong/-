@@ -103,12 +103,18 @@ void handle_key(void)
     switch(key_scan())
     {
     case KEY0_PRES:
+		HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7,GPIO_PIN_RESET);
         HAL_UART_Transmit(&huart1, (uint8_t*)"key0", sizeof("key"), 1000);
         break;
     case KEY1_PRES:
+			HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOE,GPIO_PIN_8,GPIO_PIN_RESET);
         HAL_UART_Transmit(&huart1, (uint8_t*)"key1", sizeof("key1"), 1000);
         break;
     case KEY2_PRES:
+			HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOE,GPIO_PIN_9,GPIO_PIN_RESET);
         HAL_UART_Transmit(&huart1, (uint8_t*)"key2", sizeof("key2"), 1000);
         break;
     }
