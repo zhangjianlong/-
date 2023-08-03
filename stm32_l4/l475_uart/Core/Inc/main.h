@@ -61,6 +61,7 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+void tick_handler();
 
 /* USER CODE BEGIN EFP */
 

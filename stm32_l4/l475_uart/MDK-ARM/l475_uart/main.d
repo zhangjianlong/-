@@ -31,3 +31,4 @@ l475_uart\main.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h
 l475_uart\main.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 l475_uart\main.o: ../Core/Inc/usart.h
 l475_uart\main.o: ../Core/Inc/gpio.h
+l475_uart\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

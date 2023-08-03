@@ -1,68 +1,43 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
 #include "main.h"
 #include "usart.h"
 #include "gpio.h"
+#include "string.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
+#define RXBUFFERSIZE             64
+extern UART_HandleTypeDef huart1; //UART句柄
+typedef struct
+{
+    uint8_t  rx_len;
+    uint8_t  rx_delay;
+    uint8_t  rx_buf[RXBUFFERSIZE];
+} struct_uart_info;
 
-/* USER CODE END PFP */
+struct_uart_info g_uart_info;
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
+
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
-extern UART_HandleTypeDef huart1; //UART句柄
+ * @brief	串口1中断服务程序
+ */
+void USART1_IRQHandler()
+{
+    if(__HAL_UART_GET_FLAG(&huart1, UART_FLAG_RXNE) == SET)
+    {
+        g_uart_info.rx_delay = 20;
+        if(g_uart_info.rx_len++ >= RXBUFFERSIZE)
+        {
+            g_uart_info.rx_len = 0;
+        }
+    }
+	 HAL_UART_IRQHandler(&huart1);
+}
+
+
+
+
 void key_init(void)
 {
     GPIO_InitTypeDef GPIO_Initure;
@@ -73,50 +48,26 @@ void key_init(void)
     GPIO_Initure.Pull = GPIO_PULLUP;
     GPIO_Initure.Speed = GPIO_SPEED_HIGH;
     HAL_GPIO_Init(GPIOD, &GPIO_Initure);
-	
-	//开启usart1的接收中断
-	__HAL_UART_ENABLE_IT(&huart1,UART_IT_RXNE);
-	//使能usart1,中断通道
-	HAL_NVIC_EnableIRQ(USART1_IRQn);
-	//设置中断优先级
-	HAL_NVIC_SetPriority(USART1_IRQn,3,3);
-	
-	//接收中断
-	
+
+//    //开启usart1的接收中断
+//    __HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
+//    //使能usart1,中断通道
+//    HAL_NVIC_EnableIRQ(USART1_IRQn);
+//    //设置中断优先级
+//    HAL_NVIC_SetPriority(USART1_IRQn, 3, 3);
 }
 
-uint8_t USART_RX_BUF[30];   
-uint16_t USART_RX_STA = 0;     //接收状态标记
-/**
- * @brief	串口1中断服务程序
- */
-void USART1_IRQHandler(){
-	 uint8_t Res;
-
-    if((__HAL_UART_GET_FLAG(&huart1, UART_FLAG_RXNE) != RESET)) //接收中断(接收到的数据必须是0x0d 0x0a结尾)
-    {
-        HAL_UART_Receive(&huart1, &Res, 1, 1000);
-		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9 , GPIO_PIN_SET);
-		if(Res == 'R'){
-//			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7 , GPIO_PIN_RESET);
-		}else if(Res == 'G'){
-//			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8 , GPIO_PIN_RESET);
-		}else if(Res == 'B'){
-//			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9 , GPIO_PIN_RESET);
-		}
-    }
-    HAL_UART_IRQHandler(&huart1);
-}
-void led_init(void){
-	 GPIO_InitTypeDef GPIO_Initure;
+void led_init(void)
+{
+    GPIO_InitTypeDef GPIO_Initure;
     __HAL_RCC_GPIOE_CLK_ENABLE();
-	GPIO_Initure.Pin = GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;
-	GPIO_Initure.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_Initure.Pull = GPIO_PULLUP;
-	GPIO_Initure.Speed = GPIO_SPEED_HIGH;
-	HAL_GPIO_Init(GPIOE,&GPIO_Initure);
-	
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9, GPIO_PIN_SET);
+    GPIO_Initure.Pin = GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9;
+    GPIO_Initure.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_Initure.Pull = GPIO_PULLUP;
+    GPIO_Initure.Speed = GPIO_SPEED_HIGH;
+    HAL_GPIO_Init(GPIOE, &GPIO_Initure);
+
+    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9, GPIO_PIN_SET);
 }
 
 uint8_t  key_scan(void)
@@ -139,10 +90,86 @@ uint8_t  key_scan(void)
         {
             return KEY2_PRES;
         }
-    }else if (KEY0_VALUE == 1 && KEY1_VALUE == 1 && KEY2_VALUE == 1){
-		 key_up = 1;
-	}
-	return 0;
+    }
+    else if(KEY0_VALUE == 1 && KEY1_VALUE == 1 && KEY2_VALUE == 1)
+    {
+        key_up = 1;
+    }
+    return 0;
+}
+
+void handle_key(void)
+{
+    switch(key_scan())
+    {
+    case KEY0_PRES:
+        HAL_UART_Transmit(&huart1, (uint8_t*)"key0", sizeof("key"), 1000);
+        break;
+    case KEY1_PRES:
+        HAL_UART_Transmit(&huart1, (uint8_t*)"key1", sizeof("key1"), 1000);
+        break;
+    case KEY2_PRES:
+        HAL_UART_Transmit(&huart1, (uint8_t*)"key2", sizeof("key2"), 1000);
+        break;
+    }
+
+}
+//接收数据处理的逻辑
+void tick_handler()
+{
+    if(g_uart_info.rx_delay)
+    {
+        g_uart_info.rx_delay--;
+    }
+}
+
+//接收完一帧uart的数据处理逻辑
+void handle_uart(void)
+{
+    if(g_uart_info.rx_delay)
+    {
+        return;
+    }
+    if(g_uart_info.rx_len == 0)
+    {
+        goto UART_EXIT;
+    }
+    HAL_UART_AbortReceive_IT(&huart1);
+    if(strstr((const char *)g_uart_info.rx_buf, "R_OPEN"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_RESET);
+
+    }
+    else if(strstr((const char *)g_uart_info.rx_buf, "G_OPEN"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_RESET);
+
+    }
+    else if(strstr((const char *)g_uart_info.rx_buf, "B_OPEN"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
+
+    }
+    else if(strstr((const char *)g_uart_info.rx_buf, "R_CLOSE"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_SET);
+    }
+    else if(strstr((const char *)g_uart_info.rx_buf, "G_CLOSE"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_SET);
+    }
+    else if(strstr((const char *)g_uart_info.rx_buf, "B_CLOSE"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
+    }
+    else if(strstr((const char *)g_uart_info.rx_buf, "CLOSE"))
+    {
+        HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9, GPIO_PIN_SET);
+    }
+UART_EXIT:
+    g_uart_info.rx_len = 0;
+    memset(g_uart_info.rx_buf, 0, sizeof(g_uart_info.rx_buf));
+   HAL_UART_Receive_IT(&huart1, g_uart_info.rx_buf, sizeof(g_uart_info.rx_buf));
 }
 
 int main(void)
@@ -152,20 +179,12 @@ int main(void)
     MX_GPIO_Init();
     MX_USART1_UART_Init();
     key_init();
-	led_init();
+    led_init();
+    HAL_UART_Receive_IT(&huart1, g_uart_info.rx_buf, sizeof(g_uart_info.rx_buf));
     while(1)
     {
-		switch(key_scan()){
-			case KEY0_PRES:
-				HAL_UART_Transmit(&huart1,(uint8_t*)"key0",sizeof("key"),1000);
-				break;
-			case KEY1_PRES:
-				HAL_UART_Transmit(&huart1,(uint8_t*)"key1",sizeof("key1"),1000);
-				break;
-			case KEY2_PRES:
-				HAL_UART_Transmit(&huart1,(uint8_t*)"key2",sizeof("key2"),1000);
-				break;
-		}
+        handle_key();
+        handle_uart();
     }
 
 }

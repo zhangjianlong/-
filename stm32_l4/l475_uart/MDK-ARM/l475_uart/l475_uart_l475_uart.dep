@@ -1,8 +1,8 @@
 Dependencies for Project 'l475_uart', Target 'l475_uart': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::.\ARMCC
 F (startup_stm32l475xx.s)(0x64C9C007)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include--pd "__UVISION_VERSION SETA 530" --pd "_RTE_ SETA 1" --pd "STM32L475xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32l475xx.lst --xref -o l475_uart\startup_stm32l475xx.o --depend l475_uart\startup_stm32l475xx.d)
-F (../Core/Src/main.c)(0x64CA102C)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\main.o --omf_browse l475_uart\main.crf --depend l475_uart\main.d)
-I (../Core/Inc/main.h)(0x64CA0A74)
+F (../Core/Src/main.c)(0x64CB5423)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\main.o --omf_browse l475_uart\main.crf --depend l475_uart\main.d)
+I (../Core/Inc/main.h)(0x64CB403B)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x64C9BFFC)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h)(0x6491476E)
@@ -33,9 +33,10 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x6491476E)
 I (../Core/Inc/usart.h)(0x64C9BFFB)
 I (../Core/Inc/gpio.h)(0x64C9BFFB)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5E53505C)
 F (../Core/Src/gpio.c)(0x64C9BFFB)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\gpio.o --omf_browse l475_uart\gpio.crf --depend l475_uart\gpio.d)
 I (../Core/Inc/gpio.h)(0x64C9BFFB)
-I (../Core/Inc/main.h)(0x64CA0A74)
+I (../Core/Inc/main.h)(0x64CB403B)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x64C9BFFC)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h)(0x6491476E)
@@ -64,9 +65,9 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x6491476E)
-F (../Core/Src/usart.c)(0x64C9C37A)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\usart.o --omf_browse l475_uart\usart.crf --depend l475_uart\usart.d)
+F (../Core/Src/usart.c)(0x64CB5411)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\usart.o --omf_browse l475_uart\usart.crf --depend l475_uart\usart.d)
 I (../Core/Inc/usart.h)(0x64C9BFFB)
-I (../Core/Inc/main.h)(0x64CA0A74)
+I (../Core/Inc/main.h)(0x64CB403B)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x64C9BFFC)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h)(0x6491476E)
@@ -95,8 +96,8 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x6491476E)
-F (../Core/Src/stm32l4xx_it.c)(0x64C9BFFC)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\stm32l4xx_it.o --omf_browse l475_uart\stm32l4xx_it.crf --depend l475_uart\stm32l4xx_it.d)
-I (../Core/Inc/main.h)(0x64CA0A74)
+F (../Core/Src/stm32l4xx_it.c)(0x64CB3B6E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\stm32l4xx_it.o --omf_browse l475_uart\stm32l4xx_it.crf --depend l475_uart\stm32l4xx_it.d)
+I (../Core/Inc/main.h)(0x64CB403B)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x64C9BFFC)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h)(0x6491476E)
@@ -127,7 +128,7 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_it.h)(0x64C9BFFC)
 F (../Core/Src/stm32l4xx_hal_msp.c)(0x64C9BFFC)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\stm32l4xx_hal_msp.o --omf_browse l475_uart\stm32l4xx_hal_msp.crf --depend l475_uart\stm32l4xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x64CA0A74)
+I (../Core/Inc/main.h)(0x64CB403B)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x64C9BFFC)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h)(0x6491476E)
@@ -214,7 +215,7 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x6491476E)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x6491476E)
-F (../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c)(0x6491476F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\stm32l4xx_hal_uart.o --omf_browse l475_uart\stm32l4xx_hal_uart.crf --depend l475_uart\stm32l4xx_hal_uart.d)
+F (../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c)(0x64CB53C4)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_l475_uart-ID:\Keil5\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil5\Packs\Keil\STM32L4xx_DFP\2.6.1\Drivers\CMSIS\Device\ST\STM32L4xx\Include-D__UVISION_VERSION="530" -D_RTE_ -DSTM32L475xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L475xx-o l475_uart\stm32l4xx_hal_uart.o --omf_browse l475_uart\stm32l4xx_hal_uart.crf --depend l475_uart\stm32l4xx_hal_uart.d)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x6491476E)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x64C9BFFC)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h)(0x6491476E)
