@@ -1,0 +1,26 @@
+--cpu=Cortex-M4.fp.sp --branchpatch=sdcomp-29491-629360
+"l475_nvic\startup_stm32l475xx.o"
+"l475_nvic\main.o"
+"l475_nvic\gpio.o"
+"l475_nvic\stm32l4xx_it.o"
+"l475_nvic\stm32l4xx_hal_msp.o"
+"l475_nvic\stm32l4xx_hal_tim.o"
+"l475_nvic\stm32l4xx_hal_tim_ex.o"
+"l475_nvic\stm32l4xx_hal.o"
+"l475_nvic\stm32l4xx_hal_rcc.o"
+"l475_nvic\stm32l4xx_hal_rcc_ex.o"
+"l475_nvic\stm32l4xx_hal_flash.o"
+"l475_nvic\stm32l4xx_hal_flash_ex.o"
+"l475_nvic\stm32l4xx_hal_flash_ramfunc.o"
+"l475_nvic\stm32l4xx_hal_gpio.o"
+"l475_nvic\stm32l4xx_hal_dma.o"
+"l475_nvic\stm32l4xx_hal_dma_ex.o"
+"l475_nvic\stm32l4xx_hal_pwr.o"
+"l475_nvic\stm32l4xx_hal_pwr_ex.o"
+"l475_nvic\stm32l4xx_hal_cortex.o"
+"l475_nvic\stm32l4xx_hal_exti.o"
+"l475_nvic\system_stm32l4xx.o"
+--strict --scatter "l475_nvic\l475_nvic.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "l475_nvic.map" -o l475_nvic\l475_nvic.axf
