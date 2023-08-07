@@ -1,76 +1,45 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file    gpio.c
-  * @brief   This file provides code for the configuration
-  *          of all used GPIO pins.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
 
-/* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
-
-/*----------------------------------------------------------------------------*/
-/* Configure GPIO                                                             */
-/*----------------------------------------------------------------------------*/
-/* USER CODE BEGIN 1 */
-
-/* USER CODE END 1 */
-
-/** Configure pins
-*/
-void MX_GPIO_Init(void)
-{
-
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : PE7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_7;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PE8 PE9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PD8 PD9 PD10 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
+void led_init(){
+	 
+	 __HAL_RCC_GPIOE_CLK_ENABLE();
+	GPIO_InitTypeDef gpio_init_struct = {0};
+	gpio_init_struct.Pin = GPIO_PIN_7;
+	gpio_init_struct.Mode = GPIO_MODE_OUTPUT_PP;
+	HAL_GPIO_Init(GPIOE,&gpio_init_struct);
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7,GPIO_PIN_SET);
+	
 }
 
-/* USER CODE BEGIN 2 */
+void key_init(){
+	
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	
+	GPIO_InitTypeDef gpio_init_struct = {0};
+	gpio_init_struct.Mode = GPIO_MODE_IT_FALLING;
+	gpio_init_struct.Pull = GPIO_PULLUP;
+	gpio_init_struct.Pin = GPIO_PIN_10;
+	HAL_GPIO_Init(GPIOD,&gpio_init_struct);
+	
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn,2,0);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
 
-/* USER CODE END 2 */
+void EXTI15_10_IRQHandler(){
+	HAL_Delay(200);
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	switch(GPIO_Pin){
+		case GPIO_PIN_10		:
+			HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_7);
+		
+		break;
+		
+		
+	}
+	
+}
