@@ -4,6 +4,7 @@
 "l475_nvic\gpio.o"
 "l475_nvic\stm32l4xx_it.o"
 "l475_nvic\stm32l4xx_hal_msp.o"
+"l475_nvic\time.o"
 "l475_nvic\stm32l4xx_hal_tim.o"
 "l475_nvic\stm32l4xx_hal_tim_ex.o"
 "l475_nvic\stm32l4xx_hal.o"

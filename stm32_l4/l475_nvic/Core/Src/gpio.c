@@ -6,10 +6,10 @@ void led_init(){
 	 
 	 __HAL_RCC_GPIOE_CLK_ENABLE();
 	GPIO_InitTypeDef gpio_init_struct = {0};
-	gpio_init_struct.Pin = GPIO_PIN_7;
+	gpio_init_struct.Pin = GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;
 	gpio_init_struct.Mode = GPIO_MODE_OUTPUT_PP;
 	HAL_GPIO_Init(GPIOE,&gpio_init_struct);
-	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9,GPIO_PIN_SET);
 	
 }
 
